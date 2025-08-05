@@ -33,9 +33,5 @@ export default {
       files: ['*.jsonc', 'tsconfig?(.*).json', '.vscode/*.json'],
       options: { parser: 'jsonc', trailingComma: 'all' },
     },
-    {
-      files: ['test?(s)/**/*'],
-      options: { printWidth: 120 },
-    },
-  ]
+  ],
 }
