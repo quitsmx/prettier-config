@@ -6,7 +6,7 @@
  * @see https://prettier.io/docs/configuration
  * @type {import("prettier").Config}
  */
-export default {
+const prettierConfig = {
   // bracketSameLine: false,
   // bracketSpacing: true,
   // checkIgnorePragma: false,
@@ -35,3 +35,5 @@ export default {
     },
   ],
 }
+
+export default prettierConfig
