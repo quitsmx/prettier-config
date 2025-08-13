@@ -1,6 +1,6 @@
 {
   "name": "@quitsmx/prettier-config",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "QuITS MX default Prettier configuration",
   "keywords": [
     "prettier"
@@ -8,13 +8,23 @@
   "license": "MIT",
   "author": "quitsmx <quitsmx@gmail.com>",
   "type": "module",
-  "exports": "./index.js",
+  "exports": {
+    ".": {
+      "types": "./index.d.js",
+      "default": "./index.js"
+    }
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "peerDependencies": {
     "prettier": "^3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "prettier": {
+      "optional": true
+    }
   },
   "devDendencies": {
     "prettier": "^3.6.2"
