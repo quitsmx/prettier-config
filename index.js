@@ -1,12 +1,14 @@
+/** @import { Config } from 'prettier */
 /**
  * Prettier configuration for QuITS.
  *
  * Rules that use their default value are commented out.
  *
  * @see https://prettier.io/docs/configuration
- * @type {import("prettier").Config}
+ * @type {Config}
  */
 const prettierConfig = {
+  // arrowParens: 'always',
   // bracketSameLine: false,
   // bracketSpacing: true,
   // checkIgnorePragma: false,
@@ -23,7 +25,6 @@ const prettierConfig = {
   // trailingComma: 'all',
   // useTabs: false,
   // vueIndentScriptAndStyle: false,
-  arrowParens: 'avoid',
   printWidth: 92,
   quoteProps: 'consistent',
   semi: false,
