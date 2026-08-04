@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - package.json
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  # no dejar publicación a medias
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  HUSKY: 0
+
+jobs:
+  check_version:
+    if: github.repository == 'quitsmx/prettier-config'
+    name: Check Version
+    runs-on: ${{ vars.CI_CD_BASE_OS }}
+    environment: Release
+    permissions:
+      contents: write
+    env:
+      OLD_TAG: ''
+      NEW_TAG: ''
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Check package version
+        uses: PostHog/check-package-version@v2.0.1
+        id: cpv
+
+      - name: Get new version
+        if: steps.cpv.outputs.is-new-version == 'true'
+        shell: bash
+        run: |
+          echo "NEW_TAG=v${{ steps.cpv.outputs.committed-version }}" >> $GITHUB_ENV
+          if [[ "${{ steps.cpv.outputs.is-new-package }}" != "true" ]]; then
+            echo "OLD_TAG=v${{ steps.cpv.outputs.published-version }}" >> $GITHUB_ENV
+          fi
+
+      - name: Publish release
+        if: steps.cpv.outputs.is-new-version == 'true'
+        uses: ncipollo/release-action@v1.21.0
+        with:
+          allowUpdates: true
+          artifactErrorsFailBuild: true
+          bodyFile: './.github/whats_new'
+          generateReleaseNotes: true
+          generateReleaseNotesPreviousTag: ${{ env.OLD_TAG }}
+          updateOnlyUnreleased: true
+          tag: ${{ env.NEW_TAG }}
+
+      - name: Dispatch event for deploy
+        if: steps.cpv.outputs.is-new-version == 'true'
+        uses: peter-evans/repository-dispatch@v4
+        with:
+          event-type: new-version
+          client-payload: '{ "tag_name": "${{ env.NEW_TAG }}" }'

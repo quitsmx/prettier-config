@@ -1,0 +1,42 @@
+name: Test
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  HUSKY: 0
+
+jobs:
+  test:
+    if: github.repository == 'quitsmx/prettier-config'
+    name: Test (Node ${{ matrix.node-version }})
+    runs-on: ${{ vars.CI_CD_BASE_OS }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ${{ fromJson(vars.CI_NODE_VERSIONS) }}
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: pnpm/action-setup@v6
+        with:
+          run_install: >-
+            args: [--ignore-scripts, --strict-peer-dependencies]
+
+      - run: pnpm test

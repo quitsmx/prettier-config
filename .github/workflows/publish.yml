@@ -1,0 +1,56 @@
+name: Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag to deploy'
+        required: true
+        type: string
+  repository_dispatch:
+    types: [new-version]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HUSKY: 0
+
+jobs:
+  do_publish:
+    if: github.repository == 'quitsmx/prettier-config'
+    name: Do publish
+    runs-on: ${{ vars.CI_CD_BASE_OS }}
+    environment: Release
+    permissions:
+      contents: write
+      id-token: write
+      packages: write
+      pull-requests: read
+    env:
+      TAG_NAME: ${{ inputs.tag_name || github.event.client_payload.tag_name }}
+    steps:
+      - name: Checkout tag ${{ env.TAG_NAME }}
+        uses: actions/checkout@v7
+        with:
+          ref: refs/tags/${{ env.TAG_NAME }}
+
+      - name: Use the latest Node.js LTS
+        uses: actions/setup-node@v7
+        with:
+          node-version: 'lts/*'
+          registry-url: https://registry.npmjs.org
+
+      - name: Install pnpm and dependencies
+        uses: pnpm/action-setup@v6
+        with:
+          # --ignore-scripts: Evita ejecutar scripts maliciosos de terceros
+          # --strict-peer-dependencies: Falla si hay conflicto de dependencias
+          run_install: >-
+            args: [--ignore-scripts, --strict-peer-dependencies]
+
+      - name: Publish to npmjs
+        run: pnpm publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ''
