@@ -5,6 +5,14 @@
   "keywords": [
     "prettier"
   ],
+  "homepage": "https://github.com/quitsmx/prettier-config",
+  "bugs": {
+    "url": "https://github.com/quitsmx/prettier-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quitsmx/prettier-config.git"
+  },
   "license": "MIT",
   "author": "QuITS <quits.mx@gmail.com>",
   "type": "module",
@@ -16,17 +24,31 @@
   },
   "main": "index.js",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
+    "only-allow": "^1.2.2",
     "prettier": "~3.3.3"
   },
   "peerDependencies": {
-    "prettier": "^3.0.0"
+    "prettier": "^3.3.3"
   },
   "peerDependenciesMeta": {
     "prettier": {
       "optional": true
+    }
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^22.18.0 || ^24.12.0 || >=26.0.0",
+      "onFail": "error"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.18.0",
+      "onFail": "error"
     }
   }
 }
