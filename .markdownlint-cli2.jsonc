@@ -1,0 +1,11 @@
+{
+  "config": {
+    "default": true,
+    "line-length": { "line_length": 512, "tables": false, "stern": true },
+    "no-duplicate-heading": { "siblings_only": true },
+    "ul-style": { "style": "dash" },
+  },
+  "gitignore": true,
+  "globs": ["**/*.md", "**/*.mdx", "**/*.markdown"],
+  "noBanner": true,
+}
