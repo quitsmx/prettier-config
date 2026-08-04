@@ -1,4 +1,4 @@
-## What's New in v4.0.0
+## What's New in v4.0.0 & v4.0.1
 
 Version 4 of this configuration introduces 2 breaking changes that will affect all our code. We recommend implementing them in a single commit once the affected project's tests pass at 100%.
 
@@ -16,6 +16,10 @@ The second change affects Markdown table formatting: tables are now compacted wh
   - `test.yml`: unit tests + Prettier format check in a multi Node.js version matrix
   - `publish.yml`: npm publication with provenance via OIDC
   - `release.yml`: auto-tagging on `package.json` version bumps, release notes from `.github/whats_new`, and `repository_dispatch` to trigger publishing
+
+#### v4.0.1
+
+- `files` field to package.json to limit published files to `index.js` and `index.d.ts`
 
 ### Changed
 

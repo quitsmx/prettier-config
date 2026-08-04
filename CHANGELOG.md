@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+## [4.0.1] - 2026-08-04
+
+### Added
+
+- `files` field to package.json to limit published files to `index.js` and `index.d.ts`
+
+## [4.0.0] - 2026-08-04
+
 Version 4 of this configuration introduces 2 breaking changes that will affect all our code. We recommend implementing them in a single commit once the affected project's tests pass at 100%.
 
 The first change is `printWidth`, which now uses the default value of 80, better suited for the limited space available alongside AI chat panels and/or IDE minimaps.
@@ -55,5 +63,7 @@ First public release, as v3.x to match the major version of Prettier
 
 <!-- Versions -->
 
-[Unreleased]: https://github.com/quitsmx/prettier-config/compare/v3.1.0...HEAD
+[Unreleased]: https://github.com/quitsmx/prettier-config/compare/v4.0.1...HEAD
+[4.0.1]: https://github.com/quitsmx/prettier-config/compare/v4.0.0...v4.0.1
+[4.0.0]: https://github.com/quitsmx/prettier-config/compare/v3.1.0...v4.0.0
 [3.1.0]: https://github.com/quitsmx/prettier-config/releases/tag/v3.1.0
