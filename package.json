@@ -1,6 +1,6 @@
 {
   "name": "@quitsmx/prettier-config",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "QuITS MX default Prettier configuration",
   "keywords": [
     "prettier"
@@ -28,11 +28,9 @@
     "index.d.ts"
   ],
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "test": "node --test && pnpx prettier --check ."
   },
   "devDependencies": {
-    "only-allow": "^1.2.2",
     "prettier": "~3.3.3"
   },
   "peerDependencies": {

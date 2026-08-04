@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+## [4.0.2] - 2026-08-04
+
+### Removed
+
+- `only-allow` dependency and `preinstall` script — the tool fails when this package is installed as a dependency in npm-based projects, defeating its purpose
+
 ## [4.0.1] - 2026-08-04
 
 ### Added
@@ -63,7 +69,8 @@ First public release, as v3.x to match the major version of Prettier
 
 <!-- Versions -->
 
-[Unreleased]: https://github.com/quitsmx/prettier-config/compare/v4.0.1...HEAD
+[Unreleased]: https://github.com/quitsmx/prettier-config/compare/v4.0.2...HEAD
+[4.0.2]: https://github.com/quitsmx/prettier-config/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/quitsmx/prettier-config/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/quitsmx/prettier-config/compare/v3.1.0...v4.0.0
 [3.1.0]: https://github.com/quitsmx/prettier-config/releases/tag/v3.1.0
