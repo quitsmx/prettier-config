@@ -1,20 +1,40 @@
+# kilocode worktrees & state
+.kilo
+
+# VS Code / VSCodium files
 .vscode/*
+!.vscode/*.code-snippets
+!.vscode/extensions.json
+!.vscode/launch.json
 !.vscode/settings.json
 !.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
 !*.code-workspace
+
+# Other IDEs
+.idea/
 
 # Built Visual Studio Code Extensions
 *.vsix
 
-# Logs
+# Logs and temp
+*.log*
+*~
 logs
-*.log
+~*
+
+# Environment secrets
+.env
+.env.*
+.envrc
+
+# act (local GitHub Actions runner)
+.actrc
 
 # Dependency directories
 node_modules/
 
-# pnpm
-pnpm-lock.*
+# mac/win
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
