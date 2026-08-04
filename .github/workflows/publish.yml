@@ -24,12 +24,11 @@ jobs:
     runs-on: ${{ vars.CI_CD_BASE_OS }}
     environment: Release
     permissions:
-      contents: write
+      contents: read
       id-token: write
-      packages: write
-      pull-requests: read
     env:
       TAG_NAME: ${{ inputs.tag_name || github.event.client_payload.tag_name }}
+
     steps:
       - name: Checkout tag ${{ env.TAG_NAME }}
         uses: actions/checkout@v7
@@ -51,6 +50,7 @@ jobs:
             args: [--ignore-scripts, --strict-peer-dependencies]
 
       - name: Publish to npmjs
-        run: pnpm publish --access public --no-git-checks
+        run: pnpm publish --provenance --access public --no-git-checks
         env:
+          # La publicación se hace con OIDC
           NODE_AUTH_TOKEN: ''
