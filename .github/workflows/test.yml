@@ -2,9 +2,19 @@ name: Test
 
 on:
   push:
-    branches: [main, master]
+    paths:
+      - '**/*.js'
+      - '**/*.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/test.yml'
   pull_request:
-    branches: [main, master]
+    paths:
+      - '**/*.js'
+      - '**/*.ts'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/test.yml'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
