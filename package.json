@@ -25,7 +25,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test && pnpx prettier --check ."
   },
   "devDependencies": {
     "only-allow": "^1.2.2",
