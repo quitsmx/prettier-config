@@ -1,6 +1,6 @@
 {
   "name": "@quitsmx/prettier-config",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "QuITS MX default Prettier configuration",
   "keywords": [
     "prettier"

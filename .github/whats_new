@@ -1,40 +1,5 @@
-## What's New in v4.0.0 - v4.0.2
+## What's New in v4.0.3
 
-Version 4 of this configuration introduces 2 breaking changes that will affect all our code. We recommend implementing them in a single commit once the affected project's tests pass at 100%.
+Added `.pnpmfile.mjs` with a `beforePacking` hook to strip development-only blocks from package.json, allowing the revert of the `only-allow` removal that caused runtime issues.
 
-The first change is `printWidth`, which now uses the default value of 80, better suited for the limited space available alongside AI chat panels and/or IDE minimaps.
-
-The second change affects Markdown table formatting: tables are now compacted when their length exceeds `printWidth`, making them compatible with the _markdownlint MD060_ default `table-column-style: { aligned_delimiter: false, style: any }`.
-
-### Added
-
-- Package metadata and publish config to package.json
-- markdown override to format markdown tables in markdownlint compatible styles "aligned" and "compact".
-- `prettier.config.mjs` for self-referential config loading
-- Test suite using `node:test`
-- GitHub Actions CI/CD workflows:
-  - `test.yml`: unit tests + Prettier format check in a multi Node.js version matrix
-  - `publish.yml`: npm publication with provenance via OIDC
-  - `release.yml`: auto-tagging on `package.json` version bumps, release notes from `.github/whats_new`, and `repository_dispatch` to trigger publishing
-
-#### v4.0.1
-
-- `files` field to package.json to limit published files to `index.js` and `index.d.ts`
-
-### Removed
-
-#### v4.0.2
-
-- `only-allow` dependency and `preinstall` script — the tool fails when this package is installed as a dependency in npm-based projects, defeating its purpose
-
-## [3.0.0] - 2024-07-18
-
-### Changed
-
-- Bump Prettier to `^3.3.3`
-- Reinforces the use of pnpm for development
-
-### Fixed
-
-- Correct misspelled `package.json#devDendencies` key
-- Correct export of `index.d.ts`
+Removed `*.mdx` and added other extensions to the Markdown override, as MDX support is incomplete in Prettier 3.x.

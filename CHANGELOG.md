@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 
 ## [Unreleased]
 
+## [4.0.3] - 2026-08-06
+
+Added `.pnpmfile.mjs` with a `beforePacking` hook to strip development-only blocks from package.json, allowing the revert of the `only-allow` removal that caused runtime issues.
+
+Removed `*.mdx` and added other extensions to the Markdown override, as MDX support is incomplete in Prettier 3.x.
+
+### Added
+
+- `.pnpmfile.mjs` with `beforePacking` hook to strip `devDependencies`, `devEngines`, and `scripts` from the published manifest
+- `publishConfig.access: "public"` in package.json
+
+### Changed
+
+- `prettier` is now a required peer dependency (removed `peerDependenciesMeta.optional`)
+- Markdown override: removed `*.mdx` (Prettier's native MDX support is incomplete), added `*.mdown`, `mkd`, `mkdown`
+- markdownlint globs: removed `**/*.mdx` to match the Prettier override change
+- `publish.yml`: removed redundant `--access public` flag (now in `publishConfig`)
+
+### Fixed
+
+- Restored `only-allow` and `preinstall` script (reverted removal from 4.0.2)
+
 ## [4.0.2] - 2026-08-04
 
 ### Removed
@@ -69,7 +91,8 @@ First public release, as v3.x to match the major version of Prettier
 
 <!-- Versions -->
 
-[Unreleased]: https://github.com/quitsmx/prettier-config/compare/v4.0.2...HEAD
+[Unreleased]: https://github.com/quitsmx/prettier-config/compare/v4.0.3...HEAD
+[4.0.3]: https://github.com/quitsmx/prettier-config/compare/v4.0.2...v4.0.3
 [4.0.2]: https://github.com/quitsmx/prettier-config/compare/v4.0.1...v4.0.2
 [4.0.1]: https://github.com/quitsmx/prettier-config/compare/v4.0.0...v4.0.1
 [4.0.0]: https://github.com/quitsmx/prettier-config/compare/v3.1.0...v4.0.0
