@@ -56,7 +56,7 @@ const prettierConfig = {
       options: { parser: 'jsonc', trailingComma: 'all' },
     },
     {
-      files: ['*.md', '*.mdx', '*.markdown'],
+      files: ['*.md', '*.markdown', '*.mdown', 'mkd', 'mkdown'],
       options: { parser: 'markdown', proseWrap: 'never' },
     },
   ],

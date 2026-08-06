@@ -28,18 +28,15 @@
     "index.d.ts"
   ],
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "test": "node --test && pnpx prettier --check ."
   },
   "devDependencies": {
+    "only-allow": "^1.2.2",
     "prettier": "~3.3.3"
   },
   "peerDependencies": {
     "prettier": "^3.3.3"
-  },
-  "peerDependenciesMeta": {
-    "prettier": {
-      "optional": true
-    }
   },
   "devEngines": {
     "runtime": {
@@ -52,5 +49,8 @@
       "version": "^11.18.0",
       "onFail": "error"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
